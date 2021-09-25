@@ -17,12 +17,12 @@ class Board():
     def clear_board(self):
         self.board = numpy.zeros(self.board_size, dtype=numpy.int8)
 
-board = Board(10,10)
+def create_editor():
 
-editor = Tk()
-editor.title('Map Editor')
-editor.geometry('+100+0')
-
+    editor = Tk()
+    editor.title('Map Editor')
+    editor.geometry('+100+0')
+    return editor
 
 def color_button(button):
     color_dict = {'Wall':"light green",
@@ -46,8 +46,7 @@ def create_grid_buttons():
             b = b + 1
             buttons.append(
             Button(editor, text='empty', bg='black', borderwidth=1, height=3, width=11, 
-                    command= lambda num=b-1: become_object(num))
-                        )
+                    command= lambda num=b-1: become_object(num)))
             buttons[-1].grid(row = x, column = y)
     return buttons
 
@@ -55,8 +54,8 @@ def create_option_buttons():
     option_buttons = []
     for option in enumerate(placeable_objects):
         option_buttons.append(
-            Button(editor, text=str(option[1]), borderwidth=1, height=3, width=11, command= lambda num=option[0]: select(num))
-                    )
+            Button(editor, text=str(option[1]), borderwidth=1, height=3, width=11,
+                     command= lambda num=option[0]: select(num)))
         color_button(option_buttons[-1])
         option_buttons[-1].grid(row = option[0], column = 10)
 
@@ -169,7 +168,8 @@ def create_object(object_number, y_pos, x_pos):
     button['text'] = placeable_objects[index]
     color_button(button)
 
-
+editor = create_editor()
+board = Board(10,10)
 buttons = create_grid_buttons()
 option_buttons, name_entry, level_name = create_option_buttons()
 editor.mainloop()

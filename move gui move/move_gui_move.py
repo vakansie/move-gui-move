@@ -197,8 +197,7 @@ class Player(Game_Object):
             win_label = tkinter.Label(top, text = 'You won!',font=("Arial", 25))
             win_button = tkinter.Button(
                                 top, padx=50, pady=5, text='reset',font=("Arial", 25),
-                                command= lambda: Game_Object.reset(top)
-                                )
+                                command= lambda: Game_Object.reset(top))
             win_label.pack()
             win_button.pack()
 
